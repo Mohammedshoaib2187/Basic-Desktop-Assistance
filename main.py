@@ -342,49 +342,7 @@ class whatsappbot:
         if 'yes' in conf.lower():
             driver.close()
 
-class cms: 
-    def __init__(self): 
-        self.username = ["B18CS077"]
-        self.password = ["18cs0776"]
-        self.base_url = 'https://cms.kitsw.org/'
-        self.cms = webdriver.Chrome(ChromeDriverManager().install()) 
-        self.login() 
 
-    def login(self): 
-        self.cms.get(self.base_url) 
-        #entring roll no
-        self.cms.find_element_by_xpath( 
-			'/html/body/form/div[3]/table/tbody/tr[1]/td[2]/div/table/tbody/tr[3]/td[2]/input').send_keys(self.username) 
-        time.sleep(2) 
-        
-		#entering password
-        self.cms.find_element_by_xpath( 
-			'/html/body/form/div[3]/table/tbody/tr[1]/td[2]/div/table/tbody/tr[4]/td[2]/input').send_keys(self.password) 
-        time.sleep(2) 
-        self.cms.find_element_by_xpath( 
-			'/html/body/form/div[3]/table/tbody/tr[1]/td[2]/div/table/tbody/tr[6]/td[2]/input').click() 
-        time.sleep(2)
-        speak("Do you want to know attendance percentage")
-        conf=takeCommand()
-        if 'yes' in conf.lower():
-            self.cms.find_element_by_xpath( 
-                '/html/body/form/div[3]/table/tbody/tr[2]/td[1]/table/tbody/tr[4]/td').click()
-
-            #telling the attendance percent
-            atten=self.cms.find_element_by_id("lblpercentage")
-            speak("Attendance percent is "+atten.text)
-
-            #telling number of classes held
-            ch=self.cms.find_element_by_id("lblworkingdays")
-            speak("Total classes held are "+ch.text)
-
-            #telling number of classes present
-            cp=self.cms.find_element_by_id("lblpresentdays")
-            speak("Total classes present are "+cp.text)
-
-            #telling number of classes absent
-            ca=self.cms.find_element_by_id("lblabsenton")
-            speak("Absent classes are "+ca.text)
 
 
 #main program
@@ -507,9 +465,9 @@ while(cmd):
         elif 'email' in query.lower() or 'gmail' in query.lower():
             try:
                 msg=MIMEMultipart()
-                fromaddress="mdshoaib093@gmail.com"
+                fromaddress=#keep the address from which you want to send the mail
                 msg['From']=fromaddress
-                mails={'shoaib':'mdshoaib2187@gmail.com','zoheb':'zohaibuzohaib3@gmail.com','raees':'saad20818@gmail.com','vishnu':'B18CS117@kitsw.ac.in'}
+                
                 speak("To whom i should send?")
                 to=takeCommand()
                 if "send it to" in to.lower():
@@ -657,7 +615,7 @@ while(cmd):
         #opening insta
         elif 'open' in query.lower() and ('instagram' in query.lower() or 'insta' in query.lower()):
             speak("Ok sir")
-            instabot('mohammed.shoaib093', 'shoaib123')
+            instabot('username', 'password')
             input("Done")
             time.sleep(5)
             speak("Sir here is your insta")
@@ -669,7 +627,7 @@ while(cmd):
             names=[name]
             speak("What message do you like to send")
             message=takeCommand()
-            bot('mohammed.shoaib093', 'shoaib123',names,message)
+            bot('username', 'password',names,message)
             input("Done")
             time.sleep(5)
             speak("Message sent successfully")
@@ -678,8 +636,8 @@ while(cmd):
         #opening facebook
         elif 'open' in query.lower() and ('facebook' in query.lower() or 'fb' in query.lower()):
             speak("Ok sir")
-            name=["9704932187"]
-            password=["shoaib123"]
+            name=["username"]
+            password=["password"]
             facebot(name,password)
             time.sleep(5)
             speak("Sir here is your facebook")
